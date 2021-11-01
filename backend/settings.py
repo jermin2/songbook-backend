@@ -145,9 +145,10 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
 }
-
+CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = [
-    'https://jermin-songbook.herokuapp.com/'
+    'https://jermin-songbook.herokuapp.com',
+    'http://jermin-songbook.herokuapp.com',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
