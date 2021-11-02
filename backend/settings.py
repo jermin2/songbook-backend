@@ -19,19 +19,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+import environ
 
+# Initialize environment variables
+env = environ.Env( ALLOWED_HOSTS=(list))
+environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-a9&e@8+l)n!wa3r#wkuj5db=e%6$k2&nroc#38%a98ok*!amz$'
 import os
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-a9&e@8+l)n!wa3r#wkuj5db=e%6$k2&nroc#38%a98ok*!amz$' )
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = False
-DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
+DEBUG = env('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = [
-'jermin2.pythonanywhere.com'
-]
-
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 # Application definition
 
@@ -128,6 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
