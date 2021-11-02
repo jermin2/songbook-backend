@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 import environ
 
 # Initialize environment variables
-env = environ.Env( ALLOWED_HOSTS=(list))
+env = environ.Env( ALLOWED_HOSTS=(list), CORS_ALLOWED_ORIGINS=(list))
 environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-a9&e@8+l)n!wa3r#wkuj5db=e%6$k2&nroc#38%a98ok*!amz$'
@@ -148,9 +148,6 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=24),
 }
 CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = [
-    'https://jermin-songbook.herokuapp.com',
-    'http://jermin-songbook.herokuapp.com',
-]
+CORS_ALLOWED_ORIGINS = env('CORS_ALLOWED_ORIGINS')
 
 CORS_ALLOW_CREDENTIALS = True
